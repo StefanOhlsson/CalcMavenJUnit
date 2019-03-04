@@ -19,9 +19,16 @@ public class CalculatorTest {
 	 * Test of add method, of class Calculator.
 	 */
 	@Test
-	public void testAdd() {
+	public void testAdd() throws Exception {
 		System.out.println("add");
 		assertEquals(98, calculator.add(88, 10));
+
+	}
+
+	@Test
+	public void testAddNotEquals() {
+		System.out.println("add not equals");
+		assertNotEquals(99, calculator.add(88, 10));
 	}
 
 	/**
@@ -50,6 +57,26 @@ public class CalculatorTest {
 		System.out.println("divide");
 		assertEquals(1, calculator.divide(2, 2));
 
+	}
+
+	@Test
+	public void testDivideWithZero() {
+		System.out.println("divideWithZero");
+		try {
+			calculator.divide(2, 0);
+		} catch (ArithmeticException e) {
+			System.out.println("AritmeticExeption catched");
+		}
+	}
+
+	/**
+	 * Test of modulus method, of class Calculator.
+	 */
+
+	@Test
+	public void testModulus() {
+		System.out.println("modulus");
+		assertEquals(0, calculator.modulus(2, 2));
 	}
 
 }
