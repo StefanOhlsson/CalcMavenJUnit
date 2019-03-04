@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import org.junit.Assert;
+import org.junit.Before;
 
 /**
  *
@@ -12,26 +12,25 @@ import org.junit.Assert;
  */
 public class CalculatorTest {
 
-	private static final double delta = 0;
-	Calculator calculator = new Calculator();
+	private static final double delta = 0.0000001;
+	Calculator calculator;
 
 	public CalculatorTest() {
 	}
-
+	
+	// anropas före varje test-metod
+	@Before
+	public void createCalculator() {
+		calculator = new Calculator();
+	}
 	/**
 	 * Test of add method, of class Calculator.
 	 */
 	@Test
 	public void testAdd() throws Exception {
-		System.out.println("add");
+		
 		assertEquals(98, calculator.add(88, 10));
 
-	}
-
-	@Test
-	public void testAddNotEquals() {
-		System.out.println("add not equals");
-		assertNotEquals(99, calculator.add(88, 10));
 	}
 
 	/**
@@ -39,7 +38,7 @@ public class CalculatorTest {
 	 */
 	@Test
 	public void testSubtract() {
-		System.out.println("subtract");
+
 		assertEquals(0, calculator.subtract(2, 2));
 	}
 
@@ -48,7 +47,6 @@ public class CalculatorTest {
 	 */
 	@Test
 	public void testMultiply() {
-		System.out.println("multiply");
 		assertEquals(12, calculator.multiply(2, 6));
 	}
 
@@ -57,19 +55,12 @@ public class CalculatorTest {
 	 */
 	@Test
 	public void testDivide() {
-		System.out.println("divide");
 		assertEquals(1, calculator.divide(2, 2));
-
 	}
 
-	@Test
+	@Test(expected = ArithmeticException.class)
 	public void testDivideWithZero() {
-		System.out.println("divideWithZero");
-		try {
-			calculator.divide(2, 0);
-		} catch (ArithmeticException e) {
-			System.out.println("AritmeticExeption catched");
-		}
+		calculator.divide(2, 0);
 	}
 
 	/**
@@ -78,7 +69,6 @@ public class CalculatorTest {
 
 	@Test
 	public void testModulus() {
-		System.out.println("modulus");
 		assertEquals(0, calculator.modulus(2, 2));
 	}
 
@@ -88,7 +78,6 @@ public class CalculatorTest {
 
 	@Test
 	public void testPercentOf() {
-		System.out.println("testPercentOf");
 		double calcResult = calculator.percentOf(10, 100);
 		assertEquals(10.0, calcResult, delta);
 	}
