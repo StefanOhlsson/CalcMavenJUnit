@@ -4,12 +4,15 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
+
 /**
  *
  * @author Stefan Ohlsson
  */
 public class CalculatorTest {
 
+	private static final double delta = 0;
 	Calculator calculator = new Calculator();
 
 	public CalculatorTest() {
@@ -77,6 +80,17 @@ public class CalculatorTest {
 	public void testModulus() {
 		System.out.println("modulus");
 		assertEquals(0, calculator.modulus(2, 2));
+	}
+
+	/**
+	 * Test of percentOf method, of class Calculator.
+	 */
+
+	@Test
+	public void testPercentOf() {
+		System.out.println("testPercentOf");
+		double calcResult = calculator.percentOf(10, 100);
+		assertEquals(10.0, calcResult, delta);
 	}
 
 }
